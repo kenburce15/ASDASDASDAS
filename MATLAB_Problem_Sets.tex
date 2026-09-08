@@ -1,0 +1,223 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{booktabs}
+
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATLAB Problem Sets -- 1st Semester AY 2026-2027}
+\lhead{Signals and Data Representation}
+\cfoot{\thepage}
+
+% Color definitions
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5}
+\definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
+
+% Title
+\title{\textbf{Signals and Data Representation\\MATLAB Problem Sets}\\[0.3cm]{\large 1st Semester AY 2026-2027}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{General MATLAB Laboratory Instructions}
+
+\begin{itemize}
+    \item Use MATLAB R2020b or later; if a function is unavailable, use the closest equivalent and document the substitution.
+    
+    \item Create a separate script or Live Script for each problem. Begin each file with:
+    \begin{lstlisting}[language=MATLAB, basicstyle=\ttfamily\small]
+clear; clc; close all;
+    \end{lstlisting}
+    unless otherwise specified.
+    
+    \item Label every figure with a descriptive title and axis labels; include \texttt{grid on} when it improves interpretation.
+    
+    \item Show important numerical results in the Command Window using \texttt{fprintf} or a clearly formatted table.
+    
+    \item \textbf{For FFT tasks:} Report the sampling frequency, record length, dominant frequencies, and interpretation of the spectrum. MATLAB \texttt{fft} computes the discrete Fourier transform using an FFT algorithm.
+    
+    \item \textbf{For data representation tasks:} Distinguish between a value stored numerically and a binary representation stored as text; MATLAB provides \texttt{dec2bin} and \texttt{bin2dec} for textual binary representations.
+\end{itemize}
+
+\newpage
+
+\section{Problem Set 1: Analog and Digital Signals}
+
+\textbf{Learning Outcomes:} Analog/digital signals; amplitude, period, frequency, and phase --- plots and measurements.
+
+\subsection{1.1 Analog Sinusoid Generation}
+
+Generate $x(t) = 2.5 \sin(2\pi(1000)t + \pi/6)$ V for $0 \le t \le 4$ ms using at least 4,000 samples. Plot the waveform.
+
+Compute the maximum, minimum, peak-to-peak amplitude, RMS value, frequency, period, and phase in degrees from the specified parameters. Verify the period numerically using zero-crossing or peak locations.
+
+\subsection{1.2 Digital Square-Wave Approximation}
+
+Create a 1-kHz bipolar square wave with amplitude $\pm 2.5$ V and 50\% duty cycle using a 100-kHz sampling rate. Plot two periods. Determine the number of samples per period. Explain in 2--3 sentences why the square wave is a digital signal representation while the sinusoid in 1.1 is continuous-valued.
+
+\subsection{1.3 Phase Comparison}
+
+Generate $y_1 = \sin(2\pi(2 \text{ kHz})t)$ and $y_2 = \sin(2\pi(2 \text{ kHz})t - \pi/3)$ over 1.5 ms. Plot both on the same axes. Determine the time shift corresponding to the phase difference.
+
+\subsection{1.4 Quantization Experiment}
+
+Sample a 500-Hz sinusoid of amplitude 1 V at 8 kHz for 20 ms. Quantize it to 3 bits and 8 bits over the range $-1$ to $+1$ V. Plot the original and both quantized signals. Compute the maximum absolute quantization error for each.
+
+\subsection{1.5 Short Technical Reflection}
+
+Write a 150--200 word explanation comparing analog and digital signals in terms of amplitude continuity, time representation, susceptibility to noise, and suitability for computer processing. Include one communication-system example for each.
+
+\newpage
+
+\section{Problem Set 2: Periodic and Non-Periodic Signals with Frequency/Phase Analysis}
+
+\textbf{Learning Outcomes:} Distinguish periodic and non-periodic signals using time-domain and spectral behavior; quantify frequency and phase.
+
+\subsection{2.1 Periodic Composite Signal}
+
+Generate $x(t) = 1.2 \cos(2\pi \cdot 500t) + 0.6 \sin(2\pi \cdot 1500t + \pi/4)$ for 20 ms at $F_s = 20$ kHz. Determine the fundamental frequency and period. Plot the signal and its single-sided FFT magnitude.
+
+\subsection{2.2 Non-Periodic Pulse}
+
+Create a rectangular pulse of amplitude 1 with width 3 ms centered at $t = 0$, observed from $-10$ ms to $+10$ ms. Plot it and its FFT magnitude. Explain why an isolated pulse is non-periodic.
+
+\subsection{2.3 Periodicity Test by Greatest Common Divisor}
+
+Generate cosines at 800 Hz and 1200 Hz. Use the relationship between their frequencies to determine a common fundamental frequency and period. Repeat with 800 Hz and 1250 Hz and explain the difference.
+
+\subsection{2.4 Phase Estimation from Correlation}
+
+Create $x = \cos(2\pi \cdot 1000t)$ and $y = \cos(2\pi \cdot 1000t - \pi/4)$ for 5 ms. Use cross-correlation or a phase-estimation method to estimate the delay/phase relationship. Compare your estimate with the known $45°$ lag.
+
+\subsection{2.5 Frequency Scaling Experiment}
+
+Generate three sinusoids with frequencies 250 Hz, 750 Hz, and 1.5 kHz at identical amplitude. Explain how changing frequency changes the number of cycles visible in a fixed time window while leaving amplitude unchanged.
+
+\newpage
+
+\section{Problem Set 3: Wavelength, Propagation Speed, and Bandwidth}
+
+\textbf{Learning Outcomes:} Connect frequency to wavelength through propagation speed and estimate occupied bandwidth from a multitone signal.
+
+\subsection{3.1 Wavelength Calculation}
+
+For electromagnetic waves traveling at $3 \times 10^8$ m/s at frequencies 900 MHz, 2.4 GHz, and 5 GHz, calculate wavelength using $\lambda = v/f$. Display results in meters and centimeters.
+
+\subsection{3.2 Acoustic Wavelength}
+
+Repeat the wavelength calculation for sound traveling at 343 m/s at 250 Hz, 1 kHz, and 4 kHz. Explain why wavelength decreases as frequency increases when propagation speed is approximately constant.
+
+\subsection{3.3 Multitone Bandwidth}
+
+Generate $x(t) = \cos(2\pi \cdot 10 \text{ kHz} \cdot t) + 0.7 \cos(2\pi \cdot 18 \text{ kHz} \cdot t) + 0.5 \cos(2\pi \cdot 26 \text{ kHz} \cdot t)$ using $F_s = 200$ kHz. Use FFT to identify significant spectral components. Define occupied bandwidth as highest significant frequency minus lowest significant frequency using a threshold of 0.2 in normalized amplitude.
+
+\subsection{3.4 Band-Limited Noise Experiment}
+
+Create white Gaussian noise at $F_s = 100$ kHz, then compare its spectrum with a signal containing a 12-kHz tone. Estimate the frequency region containing the largest tone. Discuss why noise is broadband in contrast to a narrowband sinusoidal component.
+
+\subsection{3.5 Engineering Decision}
+
+A telemetry system must carry useful content from 8 kHz to 20 kHz. State the minimum baseband bandwidth required, then determine the minimum sampling frequency for ideal sampling according to the Nyquist criterion. Present the result in a MATLAB output table.
+
+\newpage
+
+\section{Problem Set 4: Bit Rate, Baud Rate, and Digital Signaling}
+
+\textbf{Learning Outcomes:} Relate bit rate, symbol rate (baud), bits/symbol, pulse duration, and digital waveform construction.
+
+\subsection{4.1 Binary NRZ Line Signal}
+
+Given the bit sequence \texttt{1 0 1 1 0 0 1 0}, create an NRZ waveform where bit 1 = +1 V and bit 0 = --1 V. Use bit duration $T_b = 1$ ms and plot the full sequence. Compute bit rate.
+
+\subsection{4.2 M-ary Amplitude Signaling and Baud Rate}
+
+An M-level signaling scheme carries 4 bits per symbol. For a source bit rate of 24 kb/s, compute the symbol rate and symbol duration. Map the first 16 bits of a supplied bitstream into 4-bit symbols and plot the symbol sequence.
+
+\subsection{4.3 Compare Binary and Quaternary Signaling}
+
+For a fixed bit rate of 12 kb/s, compare binary signaling (1 bit/symbol) and quaternary signaling (2 bits/symbol). Calculate baud rate for each and state which needs fewer symbols per second.
+
+\subsection{4.4 Sampling a Digital Waveform}
+
+Construct a 2-kHz periodic digital waveform with 50\% duty cycle and sample it at 5 kHz, 20 kHz, and 100 kHz. Compare the visual fidelity of the sampled representations and explain the role of sampling frequency.
+
+\subsection{4.5 Line Coding Observation}
+
+For the sequence \texttt{1 1 0 0 1 0 1 1}, create NRZ-L and Manchester-like representations (use +1/--1 levels and a mid-bit transition for Manchester). Plot both and discuss clock-recovery implications.
+
+\newpage
+
+\section{Problem Set 5: Data Representation, Binary/Hexadecimal Conversion, and Quantized Data}
+
+\textbf{Learning Outcomes:} Use MATLAB to represent integers, bytes, ASCII-like character values, binary strings, and quantized sensor samples.
+
+\subsection{5.1 Decimal, Binary, and Hexadecimal Conversion}
+
+For the decimal values $[18, 45, 127, 200, 255]$, display 8-bit binary and hexadecimal forms. Verify one binary conversion by converting the result back to decimal.
+
+\subsection{5.2 Encode a Text Message as Byte Values}
+
+Use the ASCII code values of the message \texttt{"MATLAB"} and display the decimal byte values, 8-bit binary strings, and hexadecimal values. Decode the byte values back into characters.
+
+\subsection{5.3 Uniform Quantization of Sensor Data}
+
+Create a synthetic sensor sequence $x = 1.5 + 1.2 \sin(2\pi \cdot 2t)$ over 2 s. Quantize it to an unsigned 8-bit representation over 0--3 V. Convert the first 10 quantized codes to binary and plot the original versus reconstructed signal.
+
+\subsection{5.4 Bitstream from Packed Bytes}
+
+Take bytes $[170, 85, 204]$ and produce one serial bitstream in MSB-first order. Plot the bits using \texttt{stairs}. Count the total number of transmitted bits.
+
+\subsection{5.5 Data Representation Mini-Analysis}
+
+For a 12-bit ADC with a 0--3.3 V range, compute the number of possible codes, the ideal LSB step size, and the binary code for the midpoint input of 1.65 V. Explain why bit depth affects resolution.
+
+\newpage
+
+\section{Problem Set 6: Integrated Signals and Data Representation Mini-Project}
+
+\textbf{Learning Outcomes:} Integrate waveform generation, spectral analysis, bandwidth estimation, phase interpretation, and data-rate calculations into one reproducible MATLAB workflow.
+
+\subsection{6.1 Composite Signal Communication}
+
+Generate $s(t) = 1.0 \cos(2\pi \cdot 4 \text{ kHz} \cdot t + 20°) + 0.5 \cos(2\pi \cdot 9 \text{ kHz} \cdot t - 35°) + 0.2 \cos(2\pi \cdot 14 \text{ kHz} \cdot t)$ at $F_s = 100$ kHz for 50 ms. Plot the time waveform and compute its FFT spectrum. Identify the dominant frequencies and their approximate amplitudes.
+
+\subsection{6.2 Bandwidth Estimation with a Threshold}
+
+Using the signal from 6.1, identify all frequencies where the single-sided amplitude spectrum exceeds 0.1. Report the lowest and highest significant frequencies and the resulting span. Explain why this threshold-based span is an engineering estimate rather than a universal definition of bandwidth.
+
+\subsection{6.3 Convert Application Data Rate to Baud Rate}
+
+Assume the application source produces 64 kb/s of binary data. Compare 2-level, 4-level, 8-level, and 16-level signaling. Compute bits/symbol and baud for each. Display the result in a MATLAB table and identify the scheme with the lowest symbol rate.
+
+\subsection{6.4 Encode and Transmit a Measurement}
+
+Assume the measurement value is 173 and is represented as an unsigned 8-bit field. Convert it to binary, create an MSB-first bitstream, and estimate the transmission time at 32 kb/s.
+
+\subsection{6.5 Capstone Interpretation}
+
+Prepare a one-page engineering memo based on Problems 6.1--6.4. Explain how amplitude, frequency, phase, bandwidth, bit rate, baud rate, and data representation interact in a practical digital communication link. Include the two most important MATLAB plots and at least five correctly labeled numerical results.
+
+\newpage
+
+\section*{Notes for Submission}
+
+\begin{enumerate}
+    \item Submit all MATLAB scripts and Live Scripts with clear comments and outputs.
+    \item Include all generated figures with proper labeling.
+    \item For each problem set, provide a brief summary of key findings.
+    \item Ensure reproducibility: all random seeds should be fixed if used.
+    \item Follow proper variable naming conventions and code formatting standards.
+\end{enumerate}
+
+\end{document}
