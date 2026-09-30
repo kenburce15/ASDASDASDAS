@@ -1,0 +1,250 @@
+OPERATING SYSTEMS QUIZ - EXAM VERSION (NO ANSWERS)
+Name: ________________________     Date: ________________     Score: _____/50
+
+I. MULTIPLE CHOICE (Questions 1–30)
+Instructions: Select the best answer and write the letter (A, B, C, or D) on the blank line.
+
+_____ 1. Which OS function is responsible for creating, scheduling, and terminating processes?
+A. Memory Management
+B. Process Management
+C. File Management
+D. I/O Management
+
+_____ 2. A program stored on disk becomes a process only when:
+A. It is compiled
+B. It is loaded into memory and executed
+C. It is saved as an executable file
+D. It is scheduled by the CPU
+
+_____ 3. Which of the following is NOT a component of a process?
+A. Program Code
+B. Heap
+C. Cache Memory
+D. Stack
+
+_____ 4. In the process state diagram, which state represents a process waiting for an event such as I/O completion?
+A. Ready
+B. Running
+C. Waiting/Blocked
+D. Terminated
+
+_____ 5. The data structure that stores all information about a process is called:
+A. PCB
+B. PID
+C. Stack Frame
+D. Scheduler
+
+_____ 6. Which of the following is an example of a parent process creating child processes?
+A. Microsoft Word opening a document
+B. Google Chrome creating renderer processes for tabs
+C. MATLAB running a script
+D. Zoom starting a meeting
+
+_____ 7. Context switching involves:
+A. Saving the current process state and loading another process state
+B. Allocating memory to a process
+C. Creating a new process
+D. Terminating a process
+
+_____ 8. Which is a disadvantage of context switching?
+A. Enables multitasking
+B. CPU overhead
+C. Faster execution
+D. Improved responsiveness
+
+_____ 9. A thread is best described as:
+A. A program stored on disk
+B. The smallest unit of CPU execution within a process
+C. A process waiting for I/O
+D. A scheduling algorithm
+
+_____ 10. Which of the following is NOT true about threads?
+A. Threads share code and data of the process
+B. Each thread has its own stack and registers
+C. Threads are heavier than processes
+D. Threads are managed by the scheduler
+
+_____ 11. Which multithreading model is used by Windows?
+A. Many-to-One
+B. One-to-One
+C. Many-to-Many
+D. Hybrid
+
+_____ 12. Which synchronization mechanism uses counters to control access?
+A. Mutex
+B. Semaphore
+C. Monitor
+D. Lock Variable
+
+_____ 13. A binary semaphore can take values:
+A. 0 or 1
+B. Any integer
+C. True or False
+D. None of the above
+
+_____ 14. Which synchronization construct is commonly used in Java through the synchronized keyword?
+A. Mutex
+B. Semaphore
+C. Monitor
+D. Critical Section
+
+_____ 15. The critical section problem requires:
+A. Mutual Exclusion, Progress, Bounded Waiting
+B. Deadlock Prevention, Scheduling, Paging
+C. File Sharing, I/O Control, Memory Allocation
+D. None of the above
+
+_____ 16. A race condition occurs when:
+A. Multiple processes modify shared data simultaneously
+B. A process is terminated unexpectedly
+C. Threads are blocked by I/O
+D. Context switching fails
+
+_____ 17. Which classical synchronization problem involves producers and consumers sharing a buffer?
+A. Dining Philosophers
+B. Readers-Writers
+C. Producer-Consumer
+D. Banker's Algorithm
+
+_____ 18. In the Readers-Writers problem, writers require:
+A. Shared access
+B. Exclusive access
+C. No access
+D. Parallel access
+
+_____ 19. The Dining Philosophers problem illustrates:
+A. Deadlock and starvation
+B. Context switching
+C. Thread creation
+D. File system management
+
+_____ 20. Which of the following is NOT a cause of process termination?
+A. Task completed
+B. User closed application
+C. Fatal error occurred
+D. Process waiting for I/O
+
+_____ 21. Deadlock occurs when:
+A. Processes wait indefinitely for resources held by each other
+B. CPU scheduling fails
+C. Threads terminate unexpectedly
+D. Memory allocation is insufficient
+
+_____ 22. Which CPU scheduling algorithm executes processes in the order they arrive?
+A. Round Robin
+B. Shortest Job First
+C. Priority Scheduling
+D. First-Come, First-Served
+
+_____ 23. Round Robin scheduling is most suitable for:
+A. Batch systems
+B. Interactive systems
+C. Real-time systems
+D. None of the above
+
+_____ 24. Which scheduling algorithm may cause starvation due to long jobs waiting?
+A. FCFS
+B. SJF
+C. Round Robin
+D. Priority Scheduling
+
+_____ 25. Which memory management technique divides memory into fixed-size blocks?
+A. Paging
+B. Segmentation
+C. Swapping
+D. Fragmentation
+
+_____ 26. Internal fragmentation occurs in:
+A. Paging
+B. Segmentation
+C. Swapping
+D. Virtual Memory
+
+_____ 27. External fragmentation occurs in:
+A. Paging
+B. Segmentation
+C. Swapping
+D. Virtual Memory
+
+_____ 28. Which file allocation method uses linked blocks?
+A. Contiguous Allocation
+B. Linked Allocation
+C. Indexed Allocation
+D. Hash Allocation
+
+_____ 29. The I/O system of an OS is responsible for:
+A. Managing input/output devices
+B. Scheduling CPU tasks
+C. Allocating memory
+D. Preventing deadlocks
+
+_____ 30. Which of the following is a real-world example of synchronization?
+A. Two ATMs accessing the same bank account
+B. A process waiting for CPU time
+C. A thread executing JavaScript
+D. A file stored on disk
+
+II. IDENTIFICATION (Questions 31–50)
+Instructions: Write your answer on the blank line provided. Keep answers brief and clear.
+
+31. Define a process in one line.
+___________________________________________________________________________
+
+32. What is the smallest unit of CPU execution?
+___________________________________________________________________________
+
+33. Name the OS structure that stores process information.
+___________________________________________________________________________
+
+34. What is the state when a process is loaded into memory and waiting for CPU?
+___________________________________________________________________________
+
+35. What is the state when a process is executing on the CPU?
+___________________________________________________________________________
+
+36. What is the state when a process finishes execution?
+___________________________________________________________________________
+
+37. What is the state when a process waits for I/O completion?
+___________________________________________________________________________
+
+38. What is the state when a process is swapped out of memory but ready to run?
+___________________________________________________________________________
+
+39. What is the state when a process is swapped out and waiting for an event?
+___________________________________________________________________________
+
+40. What is the unique identifier assigned to each process?
+___________________________________________________________________________
+
+41. What is the term for switching CPU from one process to another?
+___________________________________________________________________________
+
+42. What is the OS mechanism that prevents multiple processes from accessing shared resources simultaneously?
+___________________________________________________________________________
+
+43. What is the condition when multiple processes modify shared data simultaneously?
+___________________________________________________________________________
+
+44. Name one classical synchronization problem involving philosophers.
+___________________________________________________________________________
+
+45. Name one classical synchronization problem involving readers and writers.
+___________________________________________________________________________
+
+46. Name one classical synchronization problem involving producers and consumers.
+___________________________________________________________________________
+
+47. What is the locking mechanism that allows only one thread to enter?
+___________________________________________________________________________
+
+48. What synchronization mechanism uses counters?
+___________________________________________________________________________
+
+49. What synchronization construct combines shared data with procedures?
+___________________________________________________________________________
+
+50. What is the situation when two or more processes wait indefinitely for resources held by each other?
+___________________________________________________________________________
+
+END OF EXAM
