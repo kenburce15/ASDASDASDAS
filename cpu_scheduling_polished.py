@@ -10,7 +10,6 @@ Implements: FCFS, SJF, Priority, Round Robin, Preemptive SJF, Preemptive Priorit
 import csv
 from collections import deque
 from typing import List, Tuple
-from datetime import datetime
 
 
 class Process:
@@ -181,9 +180,10 @@ class CPUScheduler:
             process.remaining_time -= 1
             
             if not self.gantt_chart or self.gantt_chart[-1][0] != process.pid:
-                self.gantt_chart.append([process.pid, start_time, current_time])
+                self.gantt_chart.append((process.pid, start_time, current_time))
             else:
-                self.gantt_chart[-1][2] = current_time
+                pid, start, _ = self.gantt_chart[-1]
+                self.gantt_chart[-1] = (pid, start, current_time)
             
             if process.remaining_time == 0:
                 process.completion_time = current_time
@@ -191,7 +191,6 @@ class CPUScheduler:
                 process.waiting_time = process.turnaround_time - process.burst_time
                 completed_count += 1
         
-        self.gantt_chart = [tuple(g) for g in self.gantt_chart]
         return self.gantt_chart, *self._calculate_averages()
     
     def preemptive_priority(self) -> Tuple[List, float, float]:
@@ -217,9 +216,10 @@ class CPUScheduler:
             process.remaining_time -= 1
             
             if not self.gantt_chart or self.gantt_chart[-1][0] != process.pid:
-                self.gantt_chart.append([process.pid, start_time, current_time])
+                self.gantt_chart.append((process.pid, start_time, current_time))
             else:
-                self.gantt_chart[-1][2] = current_time
+                pid, start, _ = self.gantt_chart[-1]
+                self.gantt_chart[-1] = (pid, start, current_time)
             
             if process.remaining_time == 0:
                 process.completion_time = current_time
@@ -227,7 +227,6 @@ class CPUScheduler:
                 process.waiting_time = process.turnaround_time - process.burst_time
                 completed_count += 1
         
-        self.gantt_chart = [tuple(g) for g in self.gantt_chart]
         return self.gantt_chart, *self._calculate_averages()
     
     def _calculate_averages(self) -> Tuple[float, float]:
@@ -283,7 +282,7 @@ class CPUScheduler:
                 writer.writerow([f'P{process.pid}', process.burst_time, process.arrival_time,
                                process.completion_time, process.waiting_time, 
                                process.turnaround_time])
-        print(f"✓ Results exported to: {filename}")
+        print(f"[EXPORT] Results saved to: {filename}")
 
 
 def print_header():
@@ -380,19 +379,7 @@ def main():
     for result in results_summary:
         print(f"{result['algorithm']:<50} {result['avg_wt']:<15.2f} {result['avg_tat']:<15.2f}")
     
-    print("\n" + "=" * 90)
-    print("REFLECTION:")
-    print("-" * 90)
-    print("""
-The simulation demonstrates how different CPU scheduling algorithms affect system performance.
-FCFS is simple but inefficient, causing high waiting times. SJF minimizes average waiting time 
-but doesn't account for priority. Priority scheduling ensures important tasks execute first. 
-Round Robin provides fair distribution but with overhead. Preemptive algorithms respond to 
-arriving processes dynamically but require more context switching. The choice depends on 
-system requirements: batch systems prefer SJF, interactive systems prefer Round Robin, and 
-real-time systems require priority-based scheduling.
-""")
-    print("=" * 90 + "\n")
+    print("\n" + "=" * 90 + "\n")
 
 
 if __name__ == "__main__":
